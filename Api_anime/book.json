@@ -1,0 +1,29 @@
+{
+    "root": "./book",
+    "plugins": ["theme-api"],
+    "pluginsConfig": {
+        "theme-api": {
+            "theme": "dark",
+            "split": false,
+            "languages": [
+                {
+                    "lang": "js",
+                    "name": "JavaScript",
+                    "default": true
+                },
+                {
+                    "lang": "php",
+                    "name": "Php"
+                },
+                {
+                    "lang": "python",
+                    "name": "Python"
+                },
+                {
+                    "lang": "rust",
+                    "name": "Rust"
+                }
+            ]
+        }
+    }
+}
