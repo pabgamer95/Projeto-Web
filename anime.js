@@ -1,3 +1,4 @@
+//animes.js
 // Função para buscar e criar linhas na tabela com os dados dos animes
 async function criarLinhasAnimes() {
     const tbody = document.querySelector("#anime-table tbody");
