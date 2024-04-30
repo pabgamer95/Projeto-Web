@@ -1,13 +1,12 @@
 # AniMaltas
 <p>AniMaltas é um site de streaming de anime que utiliza a API da AniList para fornecer informações e conteúdo sobre os seus animes favoritos.</p>
 
-## Funcionalidades
+## Objetivos
 <ul>
-<li>Pesquisa de Animes: Busque por animes usando o título ou palavras-chave.</li>
-<li>Detalhes do Anime: Veja informações detalhadas sobre cada anime, incluindo sinopse, classificação, episódios e muito mais.</li>
-<li>Lista de Favoritos: Os usuários podem adicionar animes à sua lista de favoritos para acessar facilmente mais tarde.</li>
+<li>Pesquisa de Animes: Encontrar os animes pelo título.</li>
+<li>Detalhes do Anime: Ver informações detalhadas do mesmo</li>
+<li>Lista de Favoritos: Os utilizadores vão poder adicionar aos favoritos.</li>
 <li>Reprodução de Episódios: Assista aos episódios diretamente no site.</li>
-<li>Sistema de Comentários: Compartilhe suas opiniões e discuta os animes com outros usuários.</li>
 </ul>
 
 ## Tecnologias Utilizadas
