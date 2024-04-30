@@ -9,9 +9,11 @@
 <li>Reprodução de Episódios: Assista aos episódios diretamente no site.</li>
 <li>Sistema de Comentários: Compartilhe suas opiniões e discuta os animes com outros usuários.</li>
 </ul>
-## Tecnologias Utilizadas
 
+## Tecnologias Utilizadas
+<ul>
 <li>JavaScript: Utilizamos JavaScript tanto no frontend quanto no backend para criar uma experiência interativa e dinâmica.</li>
 <li>API da AniList: A API da AniList nos fornece acesso a uma vasta quantidade de informações sobre animes.</li>
 <li>Node.js e Express: Utilizamos Node.js e o framework Express para criar um servidor robusto para o nosso site.</li>
 <li>HTML e CSS: Utilizamos HTML para estruturar o conteúdo e CSS para estilizar o design do site.</li>
+</ul>
