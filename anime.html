@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto de Animes</title>
+    <meta name="description" content="A website about anime">
+    <meta name="keywords" content="anime, manga, otaku">
+    <meta name="author" content="Your Name">
     <link rel="stylesheet" href="anime.css">
 </head>
 <body>
-    <h1>AniMaltas</h1>
-    <table id="anime-table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Imagem</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Os animes serão adicionados dinamicamente aqui -->
-        </tbody>
-    </table>
+    <h1 role="heading" aria-level="1">AniMaltas</h1>
+    <table id="anime-table" role="table">
+        <tbody></tbody>
+      </table>
     
+      <script src="anime.js" onerror="handleError()"></script>
+      <script>
+        function handleError() {
+          // Handle error here
+        }
+      </script>
 </body>
-<script src="anime.js"></script>
 </html>
