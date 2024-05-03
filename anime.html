@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto de Animes</title>
-    <meta name="description" content="A website about anime">
-    <meta name="keywords" content="anime, manga, otaku">
-    <meta name="author" content="Your Name">
-    <link rel="stylesheet" href="anime.css">
-</head>
+<html>
 <body>
-    <h1 role="heading" aria-level="1">AniMaltas</h1>
-    <table id="anime-table" role="table">
-        <tbody></tbody>
-      </table>
-    
-      <script src="anime.js" onerror="handleError()"></script>
-      <script>
-        function handleError() {
-          // Handle error here
-        }
-      </script>
+
+<h2>Exemplo de API Fetch</h2>
+
+<div id="anime"></div>
+
+<script>
+// Substitua '1' pelo ID do anime que você deseja buscar
+let i = 1;
+fetch(`https://api.jikan.moe/v4/anime/${i}`)
+  .then(response => response.json())
+  .then(data => {
+    let div = document.getElementById('anime');
+    let title = 'Título não disponível';
+    if (data.titles) {
+      let titleObj = data.titles.find(title => title.type === 'Default');
+      if (titleObj) {
+        title = titleObj.title;
+      }
+    }
+    div.innerHTML = `<h3>${title}</h3><p>${data.synopsis}</p>`;
+  })
+  .catch(error => console.error('Erro:', error));
+</script>
+
 </body>
 </html>
