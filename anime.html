@@ -1,29 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 10 Animes</title>
+</head>
 <body>
-
-<h2>Exemplo de API Fetch</h2>
-
-<div id="anime"></div>
-
-<script>
-// Substitua '1' pelo ID do anime que você deseja buscar
-let i = 1;
-fetch(`https://api.jikan.moe/v4/anime/${i}`)
-  .then(response => response.json())
-  .then(data => {
-    let div = document.getElementById('anime');
-    let title = 'Título não disponível';
-    if (data.titles) {
-      let titleObj = data.titles.find(title => title.type === 'Default');
-      if (titleObj) {
-        title = titleObj.title;
-      }
-    }
-    div.innerHTML = `<h3>${title}</h3><p>${data.synopsis}</p>`;
-  })
-  .catch(error => console.error('Erro:', error));
-</script>
-
+  <div id="anime-list"></div>
+<script src="anime.js"></script>
 </body>
 </html>

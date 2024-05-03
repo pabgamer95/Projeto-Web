@@ -1,59 +1,70 @@
-async function criarLinhasAnimes() {
-    const table = document.createElement("table"); // Create the <table> element
-    table.border = "2"; // Set the border attribute
-    const tbody = document.querySelector("#anime-table tbody"); // Create the <tbody> element
-    table.appendChild(tbody); // Append <tbody> to <table>
+function fetchAnimeInfo(animeId) {
+    return new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+      let pedidoURL = `https://api.jikan.moe/v4/anime/${animeId}`;
 
-    const limit = 10; // Limite de 10 animes
-    let count = 0; // Contador de animes válidos
-    let attempt = 1; // Contador de tentativas de solicitação
-
-    try {
-        for (let i = 1; count < limit && attempt <= limit; i++) {
-            const response = await fetch(`https://api.jikan.moe/v4/anime/${i}`);
-            console.log(response.ok)
-            if (response.ok) {
-                const animeData = await response.json();
-
-                // Verifica se o anime é válido
-                if (animeData.title) {
-                    // Cria uma linha na tabela com os dados do anime
-                    const tr = document.createElement("tr");
-
-                    // Coluna do nome do anime
-                    const tdNome = document.createElement("td");
-                    tdNome.textContent = animeData.title;
-                    tr.appendChild(tdNome);
-
-                    // Coluna da imagem do anime
-                    const tdImagem = document.createElement("td");
-                    const imagem = document.createElement("img");
-                    imagem.src = animeData.image_url;
-                    imagem.alt = animeData.title;
-                    imagem.classList.add("anime-image"); // Aplicando classe de estilo à imagem
-                    tdImagem.appendChild(imagem);
-                    tr.appendChild(tdImagem);
-
-                    tbody.appendChild(tr);
-
-                    count++; // Incrementa o contador de animes válidos
-
-                    // Exibe os detalhes do anime no console
-                    console.log("Anime encontrado:", animeData);
-                }
-            }
-
-            attempt++; // Incrementa o contador de tentativas de solicitação
-
-            // Aguarda 1 segundo entre as solicitações para evitar o erro "too many requests"
-            await new Promise(resolve => setTimeout(resolve, 1000))
+      xhr.open('GET', pedidoURL, true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            let data = JSON.parse(xhr.responseText);
+            resolve(data.data);
+          } else {
+            reject(`Erro ao buscar informações do anime ${animeId}: ${xhr.status}`);
+          }
         }
-    } catch (error) {
-        console.error(`Erro na requisição: ${error.message}`);
-    } finally {
-        document.body.appendChild(table); // Append the <table> element to the HTML document
-    }
-}
+      };
+      xhr.send();
+    });
+  }
 
-// Chamando a função para criar as linhas da tabela quando a página carregar
-window.onload = criarLinhasAnimes;
+  async function fetchTop10AnimeInfo() {
+    const maxAnimes = 30;
+    let animeInfos = [];
+
+    for (let i = 1; i <= maxAnimes; i++) {
+      try {
+        let animeInfo = await fetchAnimeInfo(i);
+        animeInfos.push(animeInfo);
+      } catch (error) {
+        console.error(error);
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    return animeInfos;
+  }
+
+  async function mostrarTop10AnimeInfo() {
+    let animeInfos = await fetchTop10AnimeInfo();
+    let animeListDiv = document.getElementById('anime-list');
+
+    animeInfos.forEach((animeInfo, index) => {
+      let title = animeInfo.title || 'Título não disponível';
+      let synopsis = animeInfo.synopsis || 'Sinopse não disponível';
+      let imageSrc = animeInfo.images && animeInfo.images.jpg && animeInfo.images.jpg.image_url ? animeInfo.images.jpg.image_url : 'https://via.placeholder.com/300x450';
+
+      let animeDiv = document.createElement('div');
+      animeDiv.classList.add('anime');
+
+      let h3 = document.createElement('h3');
+      h3.textContent = `Anime ${index + 1}: ${title}`;
+
+      let p = document.createElement('p');
+      p.textContent = synopsis;
+
+      let img = document.createElement('img');
+      img.src = imageSrc;
+      img.alt = title;
+      img.style.maxWidth = '200px';
+
+      animeDiv.appendChild(h3);
+      animeDiv.appendChild(p);
+      animeDiv.appendChild(img);
+
+      animeListDiv.appendChild(animeDiv);
+    });
+  }
+
+  mostrarTop10AnimeInfo();
