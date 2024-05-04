@@ -1,1 +1,43 @@
-/* animes.css */
+body{
+    background-color: #171a21;
+}
+h2{
+    color:#66bb6a;
+}
+.anime-card {
+    background-color: #171a21;
+    color: #c0c0c0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.anime-card h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.anime-card p {
+    margin-bottom: 10px;
+}
+
+.anime-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pagination .page-link {
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+.pagination .page-link:hover {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}

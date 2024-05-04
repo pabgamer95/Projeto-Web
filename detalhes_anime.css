@@ -1,0 +1,37 @@
+body{
+    background-color: #171a21;
+}
+.anime-info {
+    background-color: #171a21;
+    color: #c0c0c0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.anime-info h2 {
+    color: #ffffff;
+}
+
+.anime-info p {
+    margin-bottom: 10px;
+}
+
+.anime-info a {
+    color: #4caf50;
+}
+
+.anime-info a:hover {
+    color: #66bb6a;
+}
+
+.anime-info span {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.divider {
+    border-top: 1px solid #4caf50;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

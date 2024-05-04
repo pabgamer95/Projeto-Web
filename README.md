@@ -1,5 +1,5 @@
 # AniMaltas
-<p>AniMaltas é um site de streaming de anime que utiliza a API da AniList para fornecer informações e conteúdo sobre os seus animes favoritos.</p>
+<p>AniMaltas é um site de streaming de anime que utiliza a API da Jikan para fornecer informações e conteúdo sobre todos os animes!.</p>
 
 ## Objetivos
 <ul>
@@ -12,8 +12,7 @@
 ## Tecnologias Utilizadas
 <ul>
 <li>JavaScript: Utilizamos JavaScript tanto no frontend quanto no backend para criar uma experiência interativa e dinâmica.</li>
-<li>API da AniList: A API da AniList nos fornece acesso a uma vasta quantidade de informações sobre animes.</li>
-<li>Node.js e Express: Utilizamos Node.js e o framework Express para criar um servidor robusto para o nosso site.</li>
-<li>HTML e CSS: Utilizamos HTML para estruturar o conteúdo e CSS para estilizar o design do site.</li>
+<li>API da Jikan: A API da Jikan nos fornece acesso a uma vasta quantidade de informações sobre animes.</li>
+<li>HTML, CSS e Boostrap: Utilizamos HTML para estruturar o conteúdo e CSS junto com Bootstrap para fazer o design do site.</li>
 </ul>
 <a href="https://pabgamer95.github.io/Projeto-Web/anime.html">Site AniMaltas</a>
