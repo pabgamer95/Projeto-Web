@@ -1,4 +1,5 @@
 async function fetchAnimeInfo(animeId) {
+  await delay(250)
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     let pedidoURL = `https://api.jikan.moe/v4/anime/${animeId}`;
@@ -54,6 +55,7 @@ let allAnimeTitles = [];
 async function fetchAllAnimeDetails() {
   try {
     for (let i = 1; i <= 300; i++) {
+      await delay(1000)
       let animeInfo = await fetchAnimeInfo(i);
       allAnimeDetails.push(animeInfo);
       allAnimeTitles.push(animeInfo.title.toLowerCase());
@@ -63,6 +65,9 @@ async function fetchAllAnimeDetails() {
   }
 }
 
+function delay(ms){
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 async function searchAnime(term) {
   const animeListDiv = document.getElementById('anime-list');
   animeListDiv.innerHTML = ''; // Limpa a lista de animes antes de adicionar os resultados da busca
@@ -126,7 +131,7 @@ function createAnimeElement(animeInfo) {
 
 async function mostrarTop30AnimeInfo() {
   const pageSize = 30; // Número de animes por página
-  const totalAnimes = 300; // Total de animes disponíveis
+  const totalAnimes = 1000; // Total de animes disponíveis
   const totalPages = Math.ceil(totalAnimes / pageSize); // Calcula o total de páginas
 
   let paginationList = document.getElementById('pagination');
