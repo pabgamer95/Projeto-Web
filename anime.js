@@ -37,7 +37,7 @@ async function mostrarAnimesPorPagina(page, pageSize) {
       image.classList.add('img-fluid');
 
       image.addEventListener('click', function () {
-        window.location.href = `detalhes_anime.html?animeId=${i}`
+        window.location.href = `detalhes_anime/detalhes_anime.html?animeId=${i}`
       })
 
       column.appendChild(image);
@@ -121,7 +121,7 @@ function createAnimeElement(animeInfo) {
   image.classList.add('img-fluid');
 
   image.addEventListener('click', function () {
-    window.location.href = `detalhes_anime.html?animeId=${animeInfo.id}`
+    window.location.href = `detalhes_anime/detalhes_anime.html?animeId=${animeInfo.id}`
   });
 
   column.appendChild(image);
