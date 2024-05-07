@@ -18,6 +18,32 @@ async function fetchAnimeInfo(animeId) {
       xhr.send();
     });
   }
+
+  // Função para buscar a tradução da Sinopse do anime
+
+  async function traduzirSinopse(synopsis) {
+    const chaveAPI = 'AIzaSyDd2L9k4XNHuqF9Cug2A3ikS2x3iIvxj5w';
+    const texto = synopsis;
+    const idiomaDestino = 'pt'; // Traduzir para Português
+
+    const url = `https://translation.googleapis.com/language/translate/v2?key=${chaveAPI}&q=${encodeURIComponent(texto)}&target=${idiomaDestino}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data.data.translations[0].translatedText;
+        } else {
+            throw new Error(`Erro ao traduzir a sinopse "${synopsis}": ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error('Erro ao traduzir sinopse:', error);
+        return synopsis; // Retorna o título original em caso de erro
+    }
+}
   
   // Função para exibir os detalhes do anime na página
   async function mostrarDetalhesAnime(animeId) {
@@ -48,7 +74,9 @@ async function fetchAnimeInfo(animeId) {
   
       document.getElementById('anime-image').src = animeDetails.images.jpg.large_image_url;
       document.getElementById('anime-title').textContent = animeDetails.title;
-      document.getElementById('anime-synopsis').textContent = animeDetails.synopsis;
+      //document.getElementById('anime-synopsis').textContent = animeDetails.synopsis;
+      // Chamar Google Translate para traduzir a synopsis
+      document.getElementById('anime-synopsis').textContent = await traduzirSinopse( animeDetails.synopsis);
       document.getElementById('anime-score').textContent = animeDetails.score;
       document.getElementById('anime-episodes').textContent = animeDetails.episodes;
       document.getElementById('anime-status').textContent = animeDetails.status;
@@ -69,4 +97,3 @@ async function fetchAnimeInfo(animeId) {
       console.error("ID do anime não especificado na URL.");
     }
   };
-  
