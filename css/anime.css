@@ -9,8 +9,10 @@
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    width: 300px; /* Define a largura dos cards */
-    margin-right: 20px; /* Espaçamento entre os cards */
+    width: 200px; /* Define a largura dos cards */
+    margin-right: 20px; /* Espaçamento entre os cards para a direira*/
+    margin-bottom: 20px;/* Espaçamento entre os cards para baixo*/
+    cursor: pointer;
 }
 
 .card:last-child {
@@ -25,7 +27,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     object-fit: cover;
-    height: 450px; /* Define a altura das imagens */
+    height: 80%; /* Define a altura das imagens */
     width: 100%;
 }
 
@@ -34,7 +36,7 @@
 }
 
 .card-title {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
@@ -68,8 +70,21 @@
 
 .pagination {
     margin-top: 30px;
+    justify-content: center;
     
 }
+.pagination a{
+    margin-right: 15px;
+    padding: 0px 5px;
+    border: none;
+    border-radius: 6px;
+    color: red;
+    background-color: #5fb5be;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    transition: box-shadow 0.3s ease;
+}
+
 .hide{
     display:none;
 }
