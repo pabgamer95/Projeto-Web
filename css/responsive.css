@@ -1,0 +1,23 @@
+@media (max-width: 350px){
+    .card{
+        margin: 15px 15px;
+        width: 125px;
+    }
+    .card-title{
+        font-size: 12px;
+    }
+    .card-body{
+        padding: 5px;
+    }
+    .input-group{
+        margin-bottom:0px;
+    }
+    .pagination{
+        margin-top: 10px;
+    }
+    .pagination a{
+        margin-right: 5px;
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+}
