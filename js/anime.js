@@ -47,7 +47,7 @@ function renderAnimeCards(data, page) {
             // Get the ID from the anime object
             const animeId = anime.mal_id; // Assuming there's an 'id' property in the anime object
             // Redirect to the details page with the ID
-            window.location.href = `detalhes_anime/detalhes_anime.html?id=${animeId}`;
+            window.location.href = `html/detalhes_anime.html?id=${animeId}`;
         });
 
         animeCardContainer.appendChild(card);
