@@ -16,43 +16,59 @@ searchInput.addEventListener("input", (e) => {
 });
 
 async function fetchAnimeData(page) {
-    const response = await fetch(`https://api.jikan.moe/v4/top/anime?page=${page}`);
-    const data = await response.json();
+    try {
+        const response = await fetch(`https://api.jikan.moe/v4/top/anime?page=${page}`);
+        const data = await response.json();
 
-    if (data.data && Array.isArray(data.data) && data.data.length > 0) {
-        animeData = data.data;
-        renderAnimeCards(animeData, page);
-        renderPagination(data.pagination);
-    } else {
-        console.error('Error fetching data: Invalid data format');
+        if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+            animeData = data.data;
+            renderAnimeCards(animeData, page); // Movido para cá
+            renderPagination(data.pagination);
+        } else {
+            console.error('Error fetching data: Invalid data format');
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
 }
 
-function renderAnimeCards(data, page) {
+
+function renderAnimeCards(data, page, current_page) {
+    console.log("Rendering anime cards for page", page);
+    console.log("Received data:", data);
+
+    // Limpa o conteúdo do container antes de adicionar os novos cards
     animeCardContainer.innerHTML = "";
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const slicedData = data.slice(start, end);
-    slicedData.forEach((anime) => {
-        const card = animeCardTemplate.content.cloneNode(true).querySelector('.card');
+
+    // Itera sobre os dados para criar e adicionar os cards ao container
+    data.forEach((anime) => {
+        // Cria um novo card
+        const card = document.createElement('div');
+        card.classList.add('card'); // Adiciona a classe 'card'
+
+        // Preenche o conteúdo do card com a estrutura do template
+        card.innerHTML = `
+            <img class="card-img-top" data-image>
+            <div class="card-body">
+                <h5 class="card-title" data-header></h5>
+                <p class="card-text" data-body></p>
+            </div>
+        `;
+
+        // Atualiza as propriedades dos elementos do card
         const header = card.querySelector("[data-header]");
         header.textContent = anime.title;
 
-        let imageSrc = anime.images && anime.images.jpg && anime.images.jpg.image_url ? anime.images.jpg.image_url : "https://via.placeholder.com/300x450";
         const image = card.querySelector(".card-img-top");
+        let imageSrc = anime.images && anime.images.jpg && anime.images.jpg.image_url ? anime.images.jpg.image_url : "https://via.placeholder.com/300x450";
         image.src = imageSrc;
 
-        // Add click event to the image
-        image.addEventListener('click', function() {
-            // Get the ID from the anime object
-            const animeId = anime.mal_id; // Assuming there's an 'id' property in the anime object
-            // Redirect to the details page with the ID
-            window.location.href = `html/detalhes_anime.html?id=${animeId}`;
-        });
-
+        // Adiciona o card ao container
         animeCardContainer.appendChild(card);
     });
 }
+
+
 
 function renderPagination(pagination) {
     if (!paginationContainer) {
@@ -64,20 +80,17 @@ function renderPagination(pagination) {
     }
     paginationContainer.innerHTML = "";
     const totalPages = pagination.last_visible_page;
-    const currentPage = pagination.current_page;
-
+    let currentPage = pagination.current_page
+    console.log(currentPage)
     let startPage = 1;
     let endPage = totalPages;
 
-    // Verifica se há mais páginas do que o número máximo permitido
     if (totalPages > maxPagesToShow) {
         const halfMaxPages = Math.floor(maxPagesToShow / 2);
 
-        // Calcula a página inicial e final da lista de páginas a serem exibidas
         startPage = currentPage - halfMaxPages;
         endPage = currentPage + halfMaxPages;
 
-        // Ajusta as páginas iniciais e finais se necessário
         if (startPage < 1) {
             startPage = 1;
             endPage = maxPagesToShow;
@@ -91,7 +104,6 @@ function renderPagination(pagination) {
         }
     }
 
-    // Adiciona botão "Anterior"
     if (currentPage > 1) {
         const prevPageLink = document.createElement('a');
         prevPageLink.href = "#";
@@ -102,7 +114,6 @@ function renderPagination(pagination) {
         paginationContainer.appendChild(prevPageLink);
     }
 
-    // Adiciona botões de número de página
     for (let i = startPage; i <= endPage; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = "#";
@@ -116,7 +127,6 @@ function renderPagination(pagination) {
         paginationContainer.appendChild(pageLink);
     }
 
-    // Adiciona botão "Próximo"
     if (currentPage < totalPages) {
         const nextPageLink = document.createElement('a');
         nextPageLink.href = "#";
@@ -128,5 +138,4 @@ function renderPagination(pagination) {
     }
 }
 
-// Fetch anime data for the first page
 fetchAnimeData(currentPage);
