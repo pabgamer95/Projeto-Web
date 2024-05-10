@@ -44,7 +44,7 @@ function renderAnimeCards(data, page, current_page) {
     data.forEach((anime) => {
         // Cria um novo card
         const card = document.createElement('div');
-        card.classList.add('card'); // Adiciona a classe 'card'
+        card.classList.add('card'); // Adiciona a classe 'anime-card'
 
         // Preenche o conteúdo do card com a estrutura do template
         card.innerHTML = `
@@ -63,11 +63,16 @@ function renderAnimeCards(data, page, current_page) {
         let imageSrc = anime.images && anime.images.jpg && anime.images.jpg.image_url ? anime.images.jpg.image_url : "https://via.placeholder.com/300x450";
         image.src = imageSrc;
 
+        // Adiciona o evento de clique na imagem para redirecionar para a página de detalhes
+        image.addEventListener('click', function() {
+            let animeId = anime.mal_id;
+            window.location.href = `html/detalhes_anime.html?id=${animeId}`;
+        });
+
         // Adiciona o card ao container
         animeCardContainer.appendChild(card);
     });
 }
-
 
 
 function renderPagination(pagination) {
