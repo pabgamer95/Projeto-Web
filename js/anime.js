@@ -4,7 +4,7 @@ const searchInput = document.getElementById("search");
 let paginationContainer = document.getElementById("pagination-container");
 
 let animeData = [];
-let currentPage = 1;
+let currentPage = 1 ;
 const itemsPerPage = 25;
 const maxPagesToShow = 11;
 
