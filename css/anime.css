@@ -1,7 +1,44 @@
  /* Adicione estilos personalizados aqui se necessário */
  body {
     background-color: whitesmoke;
- }
+}
+/* Estilos para a barra vertical */
+.vertical-bar {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 20px;
+    float: left;
+}
+
+.vertical-bar h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+#news-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#news-list li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#news-list li:last-child {
+    border-bottom: none;
+}
+
+/* Adicione estilos personalizados para a barra vertical aqui */
+.vertical-bar {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 20px;
+    float: left;
+    /* Adicione mais estilos personalizados conforme necessário */
+}
+
 
 .card {
     border: none;
@@ -9,7 +46,7 @@
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    width: 18%; /* Define a largura dos cards */
+    width: 17.9%; /* Define a largura dos cards */
     margin-right: 20px; /* Espaçamento entre os cards para a direira*/
     margin-bottom: 20px;/* Espaçamento entre os cards para baixo*/
     cursor: pointer;
