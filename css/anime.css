@@ -1,7 +1,7 @@
  /* Adicione estilos personalizados aqui se necessário */
  body {
     background-color: whitesmoke;
-}
+ }
 
 .card {
     border: none;
@@ -9,7 +9,7 @@
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    width: 200px; /* Define a largura dos cards */
+    width: 18%; /* Define a largura dos cards */
     margin-right: 20px; /* Espaçamento entre os cards para a direira*/
     margin-bottom: 20px;/* Espaçamento entre os cards para baixo*/
     cursor: pointer;

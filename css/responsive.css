@@ -1,7 +1,7 @@
-@media (max-width: 350px){
+@media (max-width: 420px){
     .card{
-        margin: 15px 15px;
-        width: 125px;
+        margin: 10px 10px;
+        width: 44.3%;
     }
     .card-title{
         font-size: 12px;
