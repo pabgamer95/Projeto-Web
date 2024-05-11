@@ -159,5 +159,37 @@ function renderPagination(pagination) {
         paginationContainer.appendChild(nextPageLink);
     }
 }
+async function fetchAndDisplayAnimeNews(limit) {
+    const newsList = document.getElementById("news-list");
+    
+    try {
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://www.animenewsnetwork.com/news/rss.xml");
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        const items = xmlDoc.querySelectorAll("item");
+        const totalItems = items.length;
+        const itemsToDisplay = Math.min(totalItems, limit);
+
+        for (let i = 0; i < itemsToDisplay; i++) {
+            const item = items[i];
+            const title = item.querySelector("title").textContent;
+            const link = item.querySelector("link").textContent;
+
+            const listItem = document.createElement("li");
+            const linkElement = document.createElement("a");
+            linkElement.href = link;
+            linkElement.textContent = title;
+            listItem.appendChild(linkElement);
+            newsList.appendChild(listItem);
+        }
+    } catch (error) {
+        console.error("Erro ao buscar notícias sobre animes na Anime News Network:", error);
+    }
+}
+
+// Chamando a função fetchAndDisplayAnimeNews com limite de 5 notícias
+fetchAndDisplayAnimeNews(20);
 
 fetchAnimeData(currentPage);
