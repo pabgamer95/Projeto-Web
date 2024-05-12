@@ -37,7 +37,8 @@ async function fetchAnimeData(page) {
 
 async function fetchGlobalAnimeData(searchQuery) {
     try {
-        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${searchQuery}`);
+        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${searchQuery}&rating=G
+        `);
         const data = await response.json();
 
         if (data.data && Array.isArray(data.data) && data.data.length > 0) {
