@@ -4,16 +4,19 @@ const searchInput = document.getElementById("search");
 let paginationContainer = document.getElementById("pagination-container");
 
 let animeData = [];
-let currentPage = 1 ;
+let currentPage = 1;
 const itemsPerPage = 25;
 const maxPagesToShow = 11;
 
 searchInput.addEventListener("input", (e) => {
-    const value = e.target.value.toLowerCase();
-    const filteredAnimeData = animeData.filter(anime => anime.title.toLowerCase().includes(value));
-    currentPage = 1;
-    renderAnimeCards(filteredAnimeData, currentPage);
+    const value = e.target.value.trim(); // Remova espaços em branco extras
+    if (value !== "") {
+        fetchGlobalAnimeData(value);
+    } else {
+        fetchAnimeData(currentPage);
+    }
 });
+
 
 async function fetchAnimeData(page) {
     try {
@@ -22,7 +25,7 @@ async function fetchAnimeData(page) {
 
         if (data.data && Array.isArray(data.data) && data.data.length > 0) {
             animeData = data.data;
-            renderAnimeCards(animeData, page); // Movido para cá
+            renderAnimeCards(animeData, page);
             renderPagination(data.pagination);
         } else {
             console.error('Error fetching data: Invalid data format');
@@ -32,7 +35,22 @@ async function fetchAnimeData(page) {
     }
 }
 
+async function fetchGlobalAnimeData(searchQuery) {
+    try {
+        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${searchQuery}&rating=G
+        `);
+        const data = await response.json();
 
+        if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+            animeData = data.data;
+            renderAnimeCards(animeData);
+        } else {
+            console.error('Error fetching data: Invalid data format');
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
 function renderAnimeCards(data, page, current_page) {
     console.log("Rendering anime cards for page", page);
     console.log("Received data:", data);
