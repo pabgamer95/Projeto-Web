@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Link para o CSS personalizado -->
     <link rel="stylesheet" href="../css/detalhes_anime.css">
+    <!-- Script personalizado -->
+    <script src="../js/detalhes_anime.js" defer></script> 
 </head>
 <body>
     <header>
@@ -24,12 +26,25 @@
                         </div>
                         <div class="col-md-8">
                             <h2 id="anime-title"></h2>
+                            <div class="anime-options">
+                                <button class="option" id="episodes-link" onclick="toggleSinopseAndEpisodes()">Episódios</button>
+                                <button class="option" onclick="mudarExib('personagens')">Personagens</button>
+                                <button class="option" onclick="mudarExib('status')">Status</button>
+                                <button class="option" onclick="mudarExib('reviews')">Reviews</button>
+                                <button class="option" onclick="mudarExib('recomendacoes')">Recomendações</button>
+                            </div>
                             <hr class="divider">
-                            <p id="anime-synopsis"></p>
+                            <div id="sinopse-container">
+                                <p id="anime-synopsis"></p>
+                            </div>
+                            <div id="episodes-container" style="display: none;">
+                                <!-- Conteúdo dos episódios aqui -->
+                            </div>
                             <hr class="divider">
                             <div class="info">
-                                <p><strong>Avaliação:</strong> <span id="anime-score"></span></p>
+                                <p><strong>Avaliação:</strong><span id="anime-score"></span></p>
                                 <p><strong>Episódios:</strong> <span id="anime-episodes"></span></p>
+                                <!-- TODO: colocar no HTML uma parte de documentação para mostrar todos os episódios  -->
                                 <p><strong>Status:</strong> <span id="anime-status"></span></p>
                             </div>
                             <hr class="divider">
@@ -44,9 +59,6 @@
                 </div>
             </div>
         </div>
-        <div class="temporadas-episodios">
-        </div>
     </div>    
-    <script src="../js/detalhes_anime.js"></script> 
 </body>
 </html>
