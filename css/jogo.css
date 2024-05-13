@@ -1,0 +1,15 @@
+/* Mantenha os estilos existentes do jogo */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#board {
+    background-color: black;
+}
+
+/* Adicione o novo estilo para alinhar o jogo à direita */
+#board.game-board {
+    float: right; /* Alinha o jogo à direita */
+    margin-left: 10px; /* Adiciona um espaço à esquerda do jogo para separá-lo dos outros elementos */
+}
