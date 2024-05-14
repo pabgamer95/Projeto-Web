@@ -8,8 +8,8 @@ body {
     background-color: black;
 }
 
-/* Adicione o novo estilo para alinhar o jogo à direita */
+/* Adicione o novo estilo para alinhar o jogo à centro */
 #board.game-board {
-    float: right; /* Alinha o jogo à direita */
+    float: center; /* Alinha o jogo à centro */
     margin-left: 10px; /* Adiciona um espaço à esquerda do jogo para separá-lo dos outros elementos */
 }
