@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
     <!-- Link para o CSS personalizado -->
     <link rel="stylesheet" href="../css/detalhes_anime.css">
     <!-- Script personalizado -->
-    <script src="../js/detalhes_anime.js" defer></script> 
+    <script src="../js/detalhes_anime.js" defer></script>
 </head>
+
 <body>
     <header>
         <img src="../imagens/Prancheta 1.4.svg">
@@ -27,11 +29,12 @@
                         <div class="col-md-8">
                             <h2 id="anime-title"></h2>
                             <div class="anime-options">
-                                <button class="option" id="episodes-link" onclick="toggleSinopseAndEpisodes()">Episódios</button>
-                                <button class="option" onclick="mudarExib('personagens')">Personagens</button>
-                                <button class="option" onclick="mudarExib('status')">Status</button>
-                                <button class="option" onclick="mudarExib('reviews')">Reviews</button>
-                                <button class="option" onclick="mudarExib('recomendacoes')">Recomendações</button>
+                                <button class="option" onclick="toggleSection('sinopse')">Sinopse</button>
+                                <button class="option" onclick="toggleSection('episodes')">Episódios</button>
+                                <button class="option" onclick="toggleSection('personagens')">Personagens</button>
+
+                                <button class="option" onclick="toggleSection('reviews')">Reviews</button>
+                                <button class="option" onclick="toggleSection('recomendacoes')">Recomendações</button>
                             </div>
                             <hr class="divider">
                             <div id="sinopse-container">
@@ -40,11 +43,22 @@
                             <div id="episodes-container" style="display: none;">
                                 <!-- Conteúdo dos episódios aqui -->
                             </div>
+                            <div id="personagens-container" style="display: none;">
+                                <!-- Conteúdo dos personagens aqui -->
+                            </div>
+                            <div id="status-container" style="display: none;">
+                                <!-- Conteúdo do status aqui -->
+                            </div>
+                            <div id="reviews-container" style="display: none;">
+                                <!-- Conteúdo das reviews aqui -->
+                            </div>
+                            <div id="recomendacoes-container" style="display: none;">
+                                <!-- Conteúdo das recomendações aqui -->
+                            </div>
                             <hr class="divider">
                             <div class="info">
-                                <p><strong>Avaliação:</strong><span id="anime-score"></span></p>
+                                <p><strong>Avaliação:</strong> <span id="anime-score"></span></p>
                                 <p><strong>Episódios:</strong> <span id="anime-episodes"></span></p>
-                                <!-- TODO: colocar no HTML uma parte de documentação para mostrar todos os episódios  -->
                                 <p><strong>Status:</strong> <span id="anime-status"></span></p>
                             </div>
                             <hr class="divider">
@@ -53,12 +67,14 @@
                                 <p><strong>Classificação:</strong> <span id="anime-rating"></span></p>
                             </div>
                             <hr class="divider">
-                            <p><strong>Link MAL:</strong> <a href="#" id="anime-url" target="_blank">Ver no MyAnimeList</a></p>
+                            <p><strong>Link MAL:</strong> <a href="#" id="anime-url" target="_blank">Ver no
+                                    MyAnimeList</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </body>
+
 </html>
