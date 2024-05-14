@@ -5,12 +5,13 @@
     
  }
  header{
+    width: 100%;
     display: flex;
     flex-direction: column;
  }
  header img{
     align-self: center;
-    width: 504.9%;
+    width: 100%;
  }
  .news-animes{
     display: flex;
