@@ -58,13 +58,13 @@ window.onload = function() {
 
     //load images
     shipImg = new Image();
-    shipImg.src = "./ship.png";
+    shipImg.src = "../imagens/ship.png";
     shipImg.onload = function() {
         context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
     }
 
     alienImg = new Image();
-    alienImg.src = "./alien.png";
+    alienImg.src = "../imagens/alien.png";
     createAliens();
 
     requestAnimationFrame(update);
