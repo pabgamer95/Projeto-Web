@@ -18,6 +18,7 @@ body {
 }
 
 .home{
+    cursor: pointer;
     margin: 20px;
     padding: 12.5px 25px;
     border-radius: 25%;
