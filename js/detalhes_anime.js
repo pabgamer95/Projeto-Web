@@ -39,6 +39,66 @@ async function fetchEpisodes(animeId) {
   });
 }
 
+async function fetchPersonagens(animeId) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    let pedidoURL = `https://api.jikan.moe/v4/anime/${animeId}/characters`;
+
+    xhr.open("GET", pedidoURL, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          let data = JSON.parse(xhr.responseText);
+          resolve(data.data);
+        } else {
+          reject(`Erro ao buscar personagens do anime ${animeId}: ${xhr.status}`);
+        }
+      }
+    };
+    xhr.send();
+  });
+}
+
+async function fetchReviews(animeId) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    let pedidoURL = `https://api.jikan.moe/v4/anime/${animeId}/reviews`;
+
+    xhr.open("GET", pedidoURL, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          let data = JSON.parse(xhr.responseText);
+          resolve(data.data);
+        } else {
+          reject(`Erro ao buscar reviews do anime ${animeId}: ${xhr.status}`);
+        }
+      }
+    };
+    xhr.send();
+  });
+}
+
+async function fetchRecomendacoes(animeId) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    let pedidoURL = `https://api.jikan.moe/v4/anime/${animeId}/recommendations`;
+
+    xhr.open("GET", pedidoURL, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          let data = JSON.parse(xhr.responseText);
+          resolve(data.data);
+        } else {
+          reject(`Erro ao buscar recomendações do anime ${animeId}: ${xhr.status}`);
+        }
+      }
+    };
+    xhr.send();
+  });
+}
+
 // Função para buscar a tradução da Sinopse do anime
 async function traduzirSinopse(synopsis) {
   const chaveAPI = "SUA_CHAVE_API_DO_GOOGLE_TRANSLATE";
@@ -89,99 +149,118 @@ async function mostrarDetalhesAnime(animeId) {
 
     // Busca os episódios do anime
     let episodes = await fetchEpisodes(animeId);
-
-    // Exibe os episódios na página
     exibirEpisodios(episodes);
+
+    // Busca os personagens do anime
+    let personagens = await fetchPersonagens(animeId);
+    exibirPersonagens(personagens);
+
+    // Busca as reviews do anime
+    let reviews = await fetchReviews(animeId);
+    exibirReviews(reviews);
+
+    // Busca as recomendações do anime
+    let recomendacoes = await fetchRecomendacoes(animeId);
+    exibirRecomendacoes(recomendacoes);
   } catch (error) {
     console.error("Erro ao mostrar detalhes do anime:", error);
   }
 }
 
-// Função para exibir os episódios do anime na página
 function exibirEpisodios(episodes) {
   const episodiosContainer = document.getElementById("episodes-container");
+  episodiosContainer.innerHTML = ''; // Limpa o conteúdo anterior
 
   episodes.forEach((episode, index) => {
     const episodeElement = document.createElement("div");
     episodeElement.classList.add("episode");
     episodeElement.innerHTML = `
-        <div class="episode-title">Episódio ${index + 1}: ${episode.title}</div>
-        <div class="episode-details">Detalhes do episódio: ${
-          episode.details
-        }</div>
-        <div class="expand-arrow">&#9660;</div>
-      `;
-
-    // Adiciona evento de clique na setinha para mostrar mais detalhes
-    const expandArrow = episodeElement.querySelector(".expand-arrow");
-    expandArrow.addEventListener("click", () => {
-      mostrarDetalhesEpisodio(episode);
-    });
-
+      <div class="episode-title">Episódio ${index + 1}: ${episode.title}</div>
+      <div class="episode-details">Detalhes do episódio: ${episode.details
+      }</div>
+    `;
     episodiosContainer.appendChild(episodeElement);
   });
 }
 
-// Função para mostrar os detalhes de um episódio quando se clica na setinha
-function mostrarDetalhesEpisodio(episode) {
-  alert(`Detalhes do episódio:
-  Título: ${episode.title}
-  Detalhes: ${episode.details}`);
-}
-function toggleSinopseAndEpisodes() {
-  const sinopseContainer = document.getElementById("anime-synopsis");
-  const episodiosContainer = document.getElementById("episodes-container");
-
-  if (sinopseContainer.style.display === "block") {
-    sinopseContainer.style.display = "none";
-    episodiosContainer.style.display = "block";
-  } else {
-    sinopseContainer.style.display = "block";
-    episodiosContainer.style.display = "none";
-  }
-}
-function mudarExib(opcao) {
-  const episodiosContainer = document.getElementById("episodes-container");
+function exibirPersonagens(personagens) {
   const personagensContainer = document.getElementById("personagens-container");
-  const statusContainer = document.getElementById("status-container");
-  const reviewsContainer = document.getElementById("reviews-container");
-  const recomendacoesContainer = document.getElementById("recomendacoes-container");
+  personagensContainer.innerHTML = ''; // Limpa o conteúdo anterior
 
-  // Oculta todos os contêineres
-  episodiosContainer.style.display = "none";
-  personagensContainer.style.display = "none";
-  statusContainer.style.display = "none";
-  reviewsContainer.style.display = "none";
-  recomendacoesContainer.style.display = "none";
-
-  // Exibe o contêiner correspondente à opção selecionada
-  switch (opcao) {
-    case 'episodios':
-      episodiosContainer.style.display = "block";
-      break;
-    case 'personagens':
-      personagensContainer.style.display = "block";
-      break;
-    case 'status':
-      statusContainer.style.display = "block";
-      break;
-    case 'reviews':
-      reviewsContainer.style.display = "block";
-      break;
-    case 'recomendacoes':
-      recomendacoesContainer.style.display = "block";
-      break;
-    default:
-      console.error("Opção desconhecida:", opcao);
-  }
+  personagens.forEach((personagem) => {
+    const personagemElement = document.createElement("div");
+    personagemElement.classList.add("personagem");
+    personagemElement.innerHTML = `
+      <div class="personagem-nome">${personagem.character.name}</div>
+      <div class="personagem-detalhes">Detalhes do personagem: ${personagem.details
+      }</div>
+    `;
+    personagensContainer.appendChild(personagemElement);
+  });
 }
 
-window.onload = function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const animeId = parseInt(urlParams.get("id"));
-  if (!isNaN(animeId)) {
+function exibirReviews(reviews) {
+  const reviewsContainer = document.getElementById("reviews-container");
+  reviewsContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
+  reviews.forEach((review) => {
+    const reviewElement = document.createElement("div");
+    reviewElement.classList.add("review");
+    reviewElement.innerHTML = `
+      <div class="review-autor">Autor: ${review.user.username}</div>
+      <div class="review-detalhes">${review.review}</div>
+    `;
+    reviewsContainer.appendChild(reviewElement);
+  });
+}
+
+function exibirRecomendacoes(recomendacoes) {
+  const recomendacoesContainer = document.getElementById("recomendacoes-container");
+  recomendacoesContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
+  recomendacoes.forEach((recomendacao) => {
+    const recomendacaoElement = document.createElement("div");
+    recomendacaoElement.classList.add("recomendacao");
+    recomendacaoElement.innerHTML = `
+      <div class="recomendacao-titulo">${recomendacao.entry.title}</div>
+      <div class="recomendacao-detalhes">Detalhes da recomendação: ${recomendacao.details
+      }</div>
+    `;
+    recomendacoesContainer.appendChild(recomendacaoElement);
+  });
+}
+// Função para alternar a exibição entre as seções
+function toggleSection(section) {
+  const sections = [
+    'sinopse-container',
+    'episodes-container',
+    'personagens-container',
+    'status-container',
+    'reviews-container',
+    'recomendacoes-container'
+  ];
+
+  sections.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  const sectionId = `${section}-container`;
+  document.getElementById(sectionId).style.display = 'block';
+}
+
+// Função para extrair o animeId da URL
+function getAnimeIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id');
+}
+
+// Inicializa a página com a sinopse visível
+document.addEventListener("DOMContentLoaded", () => {
+  const animeId = getAnimeIdFromURL(); // Obtém o ID do anime da URL
+  if (animeId) {
     mostrarDetalhesAnime(animeId);
+    toggleSection('sinopse'); // Mostrar a sinopse por padrão
   } else {
-    console.error("ID do anime não especificado na URL.");
+    console.error("Anime ID não encontrado na URL");
   }
-};
+});
