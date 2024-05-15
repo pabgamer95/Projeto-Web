@@ -1,7 +1,10 @@
 /* Mantenha os estilos existentes do jogo */
 body {
     font-family: 'Courier New', Courier, monospace;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #board {
@@ -10,6 +13,19 @@ body {
 
 /* Adicione o novo estilo para alinhar o jogo à centro */
 #board.game-board {
-    float: center; /* Alinha o jogo à centro */
-    margin-left: 10px; /* Adiciona um espaço à esquerda do jogo para separá-lo dos outros elementos */
+    height: 500px;
+    width: 500px;
 }
+
+.home{
+    cursor: pointer;
+    margin: 20px;
+    padding: 12.5px 25px;
+    border-radius: 25%;
+    color: black;
+    background-color: blue;
+    font-size: larger;
+    font-weight: 900;
+}
+
+

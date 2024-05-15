@@ -2,10 +2,20 @@
  body {
     background-color: whitesmoke;
     transition: background 1s;
+    
  }
  header{
+    width: 100%;
     display: flex;
     flex-direction: column;
+ }
+ header img{
+    align-self: center;
+    width: 100%;
+ }
+ .news-animes{
+    display: flex;
+    flex-direction: row;
  }
  .opcoes{
     display: flex;
@@ -62,7 +72,7 @@
 /* Adicione estilos personalizados para a barra vertical aqui */
 .vertical-bar {
     background-color: #f4f4f4;
-    width: 200px;
+    width: 300px;
     padding: 20px;
     float: left;
     /* Adicione mais estilos personalizados conforme necessário */
