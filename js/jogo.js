@@ -9,10 +9,10 @@ let boardHeight = tileSize * rows; // 32 * 16
 let context;
 
 //ship
-let shipWidth = tileSize*2;
-let shipHeight = tileSize;
+let shipWidth = tileSize*3;
+let shipHeight = tileSize *3;
 let shipX = tileSize * columns/2 - tileSize;
-let shipY = tileSize * rows - tileSize*2;
+let shipY = tileSize * rows - tileSize*3;
 
 let ship = {
     x : shipX,
@@ -27,7 +27,7 @@ let shipVelocityX = tileSize; //ship moving speed
 //aliens
 let alienArray = [];
 let alienWidth = tileSize*2;
-let alienHeight = tileSize;
+let alienHeight = tileSize*2;
 let alienX = tileSize;
 let alienY = tileSize;
 let alienImg;
@@ -58,13 +58,13 @@ window.onload = function() {
 
     //load images
     shipImg = new Image();
-    shipImg.src = "imagens/ship.png";
+    shipImg.src = "imagens/ThousandLuffy.png";
     shipImg.onload = function() {
         context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
     }
 
     alienImg = new Image();
-    alienImg.src = "imagens/alien.png";
+    alienImg.src = "imagens/Sukuna2.png";
     createAliens();
 
     requestAnimationFrame(update);
