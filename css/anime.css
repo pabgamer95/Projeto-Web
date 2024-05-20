@@ -1,169 +1,188 @@
- /* Adicione estilos personalizados aqui se necessário */
- body {
-    background-color: whitesmoke;
-    transition: background 1s;
-    
- }
- header{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
- }
- header img{
-    align-self: center;
-    width: 100%;
- }
- .news-animes{
-    display: flex;
-    flex-direction: row;
- }
- .opcoes{
-    display: flex;
-    justify-content: center;
- }
- .opcoes li{
-    background-color: #ced4da;
-    list-style: none;
-    color: black;
-    padding: 0px 5px;
-    box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    margin: 0px 10px;
- }
- .invader{
-    border-radius: 5px;
- }
-/* Estilos para a barra vertical */
-.vertical-bar {
-    margin-right: 7%;
-    background-color: #f4f4f4;
-    padding: 20px;
-    float: left;
-    max-height: 1840px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-.vertical-bar::-webkit-scrollbar{
-    width: 0;
-    height: 0;
+:root {
+  --primary-color: #000000;
+  --secondary-color: #f4f4f4;
+  --font-color: #333333;
+  --font-color-secondary: #666666;
+  --border-color: #cccccc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-shadow-color: rgba(0, 0, 0, 0.1);
+  --pagination-bg-color: #5fb5be;
+  --pagination-font-color: red;
+  --btn-border-color: #007bff;
+  --btn-color: #007bff;
+  --btn-hover-bg-color: #007bff;
+  --btn-hover-color: #ffffff;
+  --font-size-base: 1rem;
+  --font-size-large: 1.25rem;
 }
 
+body {
+  background-color: var(--secondary-color);
+  color: var(--font-color);
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header img {
+  align-self: center;
+  width: 100%;
+}
+
+.news-animes {
+  display: flex;
+  flex-direction: row;
+}
+
+.opcoes {
+  display: flex;
+  justify-content: center;
+}
+
+.opcoes li {
+  background-color: var(--secondary-color);
+  list-style: none;
+  color: var(--primary-color);
+  padding: 0px 5px;
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  margin: 0px 10px;
+}
+
+.invader {
+  border-radius: 5px;
+}
+
+/* Estilos para a barra vertical */
+.vertical-bar {
+  background-color: var(--secondary-color);
+  width: 300px;
+  padding: 20px;
+  margin-right: 7%;
+  float: left;
+  max-height: 1840px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.vertical-bar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Estilos para as notícias */
 .noticias {
-    margin-top: 0;
-    font-size: 20px;
-    color: #333;
+  margin-top: 0;
+  font-size: var(--font-size-large);
+  color: var(--font-color);
 }
 
 #news-list {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 #news-list li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 #news-list li:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
-/* Adicione estilos personalizados para a barra vertical aqui */
-.vertical-bar {
-    background-color: #f4f4f4;
-    width: 300px;
-    padding: 20px;
-    float: left;
-    /* Adicione mais estilos personalizados conforme necessário */
-}
-
-
+/* Estilos para os cards */
 .card {
-    border: none;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    width: 17.9%; /* Define a largura dos cards */
-    margin-right: 20px; /* Espaçamento entre os cards para a direira*/
-    margin-bottom: 20px;/* Espaçamento entre os cards para baixo*/
-    cursor: pointer;
-    padding-bottom: 13px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: box-shadow 0.3s ease;
+  width: 17.9%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding-bottom: 13px;
 }
 
 .card:last-child {
-    margin-right: 0; /* Remove o espaçamento do último card */
+  margin-right: 0;
 }
 
 .card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 12px var(--hover-shadow-color);
 }
 
 .card-img-top {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    object-fit: cover;
-    height: 80%; /* Define a altura das imagens */
-    width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+  height: 80%;
+  width: 100%;
 }
 
 .card-body {
-    display: flex;
-    padding: 5px;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
 }
 
 .card-title {
-    font-size: 1.0rem;
-    font-weight: bold;
-    color: #333;
-
+  font-size: var(--font-size-base);
+  font-weight: bold;
+  color: var(--font-color);
 }
 
 .card-text {
-    font-size: 1rem;
-    color: #666;
+  font-size: var(--font-size-base);
+  color: var(--font-color-secondary);
 }
 
+/* Estilos para o grupo de entrada */
 .input-group {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .form-control {
-    border-radius: 20px;
-    border: 1px solid #ced4da;
+  border-radius: 20px;
+  border: 1px solid #ced4da;
 }
 
+/* Estilos para os botões */
 .btn-outline-secondary {
-    border-radius: 20px;
-    border: 1px solid #007bff;
-    color: #007bff;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 20px;
+  border: 1px solid var(--btn-border-color);
+  color: var(--btn-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-outline-secondary:hover {
-    background-color: #007bff;
-    color: #fff;
+  background-color: var(--btn-hover-bg-color);
+  color: var(--btn-hover-color);
 }
 
+/* Estilos para a paginação */
 .pagination {
-    margin-top: 30px;
-    justify-content: center;
-    
-}
-.pagination a{
-    margin-right: 15px;
-    padding: 0px 5px;
-    border: none;
-    border-radius: 6px;
-    color: red;
-    background-color: #5fb5be;
-    width: fit-content;
+  margin-top: 30px;
+  justify-content: center;
 }
 
-.hide{
-    display:none;
+.pagination a {
+  margin-right: 15px;
+  padding: 0px 5px;
+  border: none;
+  border-radius: 6px;
+  color: var(--pagination-font-color);
+  background-color: var(--pagination-bg-color);
+  width: fit-content;
+}
+
+.hide {
+  display: none;
 }
