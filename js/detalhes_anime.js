@@ -256,7 +256,7 @@ function criarElementoPersonagem(personagem) {
     personagem.character.images.jpg &&
     personagem.character.images.jpg.image_url
       ? personagem.character.images.jpg.image_url
-      : "https://via.placeholder.com/60x60";
+      : "https://via.placeholder.com/65x60";
   image.src = imageSrc;
 
   const cardBody = document.createElement("div");

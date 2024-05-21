@@ -2,11 +2,34 @@ const animeCardTemplate = document.getElementById("anime-template");
 const animeCardContainer = document.getElementById("anime-card-container");
 const searchInput = document.getElementById("search");
 let paginationContainer = document.getElementById("pagination-container");
-
+const opcoes = document.getElementById("opcoes");
 let animeData = [];
 let currentPage = 1;
 const itemsPerPage = 25;
 const maxPagesToShow = 11;
+
+document.getElementById("opcoes").addEventListener("change", function () {
+  const selectedOption = this.value;
+  console.log(selectedOption);
+
+  const sections = document.querySelectorAll(".vertical-bar");
+  sections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  // Use querySelector para selecionar a seção específica baseada no valor da opção selecionada
+  const selectedOptionSection = document.querySelector(
+    `.vertical-bar.${selectedOption}`
+  );
+  if (selectedOptionSection) {
+    selectedOptionSection.style.display = "block";
+  }
+
+  // Corrija a lógica de redirecionamento
+  if (selectedOption === "Game") {
+    window.location.hash = "game.html";
+  }
+});
 
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.trim(); // Remova espaços em branco extras
