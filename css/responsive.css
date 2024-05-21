@@ -20,4 +20,10 @@
         font-size: 10px;
         margin-bottom: 10px;
     }
+    .selection{
+        display: block;
+    }
+    .opcoes a{
+        display: none;
+    }
 }
