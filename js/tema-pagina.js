@@ -22,7 +22,7 @@ document.querySelector('.ball').addEventListener('click', (e)=>{
     body.classList.toggle('dark');
     if (document.body.classList.contains('dark')) {
         // code to execute if body has class 'dark'
-        localStorage.setItem('theme', 'black');
+        localStorage.setItem('theme', 'dark');
         banner.src = "imagens/Prancheta 1.4.svg"
         banner.classList.add('dark_banner')
         news.classList.add('dark_news')
