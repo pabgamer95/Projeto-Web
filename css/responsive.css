@@ -26,4 +26,7 @@
     .opcoes a{
         display: none;
     }
+    .vertical-bar{
+        display: none;
+    }
 }
