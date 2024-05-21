@@ -356,12 +356,15 @@ function toggleSection(section) {
   sections.forEach((id) => {
     document.getElementById(id).style.display = "none";
   });
-
-  const sectionId = `${section}-container`;
-  document.getElementById(sectionId).style.display = "block";
   
+  const sectionId = `${section}-container`;
   const personagemId = `personagens-container`;
-  document.getElementById(personagemId).style.display = "flex";
+
+  if(sectionId != personagemId){
+    document.getElementById(sectionId).style.display = "block";
+  }else{
+    document.getElementById(personagemId).style.display = "flex";
+  }
 }
 
 // Função para extrair o animeId da URL
