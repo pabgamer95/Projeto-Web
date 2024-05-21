@@ -359,6 +359,9 @@ function toggleSection(section) {
 
   const sectionId = `${section}-container`;
   document.getElementById(sectionId).style.display = "block";
+  
+  const personagemId = `personagens-container`;
+  document.getElementById(personagemId).style.display = "flex";
 }
 
 // Função para extrair o animeId da URL
