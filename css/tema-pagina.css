@@ -19,6 +19,9 @@
 .ball-move{
     left: calc(100% - 30px);
 }
+.white-mode{
+    background-color: turquoise;
+}
 .white{
     background-color: white;
 }
@@ -29,6 +32,7 @@
     filter: invert(1);
 }
 .dark_news{
+    transition: 1s ;
     color: white;
     background-color: black;
 }

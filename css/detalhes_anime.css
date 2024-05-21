@@ -2,6 +2,9 @@ body{
     transition: 1s;
     background-color: #f5f5f5;
 }
+#banner{
+    transition: 1s;
+}
 .information{
     max-height: 350px;
     overflow-y: auto;

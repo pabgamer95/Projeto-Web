@@ -17,6 +17,7 @@
 }
 
 body {
+  transition: 1s;
   background-color: var(--secondary-color);
   color: var(--font-color);
 }
@@ -28,6 +29,7 @@ header {
 }
 
 header img {
+  transition: 1s;
   align-self: center;
   width: 100%;
 }
@@ -58,6 +60,7 @@ header img {
 
 /* Estilos para a barra vertical */
 .vertical-bar {
+  transition: 1s;
   background-color: var(--secondary-color);
   width: 300px;
   padding: 20px;

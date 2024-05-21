@@ -18,7 +18,7 @@ if (theme === 'dark') {
 
 document.querySelector('.ball').addEventListener('click', (e)=>{
     e.target.classList.toggle('ball-move');
-    e.target.classList.toggle('white')
+    e.target.classList.toggle('white-mode')
     body.classList.toggle('dark');
     if (document.body.classList.contains('dark')) {
         // code to execute if body has class 'dark'
