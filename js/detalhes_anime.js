@@ -245,11 +245,32 @@ function exibirPersonagens(personagens) {
 }
 
 function criarElementoPersonagem(personagem) {
-  const personagemElement = document.createElement("div");
-  personagemElement.classList.add("personagem");
-  personagemElement.innerHTML = `
-    <div class="personagem-nome">${personagem.character.name}</div>`;
-  return personagemElement;
+  const card = document.createElement("div");
+  card.className = "card";
+
+  const image = document.createElement("img");
+  image.className = "card-img-top";
+
+  let imageSrc =
+    personagem.character.images &&
+    personagem.character.images.jpg &&
+    personagem.character.images.jpg.image_url
+      ? personagem.character.images.jpg.image_url
+      : "https://via.placeholder.com/60x60";
+  image.src = imageSrc;
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+
+  const cardTitle = document.createElement("h5");
+  cardTitle.className = "card-title";
+  cardTitle.textContent = personagem.character.name;
+
+  cardBody.appendChild(cardTitle);
+  card.appendChild(image);
+  card.appendChild(cardBody);
+
+  return card;
 }
 
 function exibirReviews(reviews) {
@@ -356,13 +377,13 @@ function toggleSection(section) {
   sections.forEach((id) => {
     document.getElementById(id).style.display = "none";
   });
-  
+
   const sectionId = `${section}-container`;
   const personagemId = `personagens-container`;
 
-  if(sectionId != personagemId){
+  if (sectionId != personagemId) {
     document.getElementById(sectionId).style.display = "block";
-  }else{
+  } else {
     document.getElementById(personagemId).style.display = "flex";
   }
 }
