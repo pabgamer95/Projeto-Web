@@ -129,6 +129,8 @@ header img {
 }
 
 .card-body {
+  width: max-content;
+  height: max-content;
   display: flex;
   padding: 5px;
   width: 100%;
@@ -137,6 +139,9 @@ header img {
 }
 
 .card-title {
+  display: flex;
+  align-items: center;
+  margin: 0px;
   font-size: var(--font-size-base);
   font-weight: bold;
   color: var(--font-color);

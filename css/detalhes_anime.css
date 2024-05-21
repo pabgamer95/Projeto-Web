@@ -19,7 +19,8 @@ body{
 .opcoes{
     display: flex;
     justify-content: center;
-
+    margin: 10px 0px 20px 0px;
+    padding: 0px;
  }
  .opcoes li{
     background-color: #ced4da;
@@ -41,8 +42,6 @@ body{
 .container{
     display: flex;
     flex-direction: row;
-    margin: 15px 0px;
-
 }
 .anime-info {
     background-color: #ffffff;
