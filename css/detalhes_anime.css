@@ -91,7 +91,7 @@ flex-wrap: wrap;
 }
 .card-img-top{
 
-    width: 125px;
+    width: auto;
 }
 .card-body{
     display: flex;
@@ -107,4 +107,13 @@ flex-wrap: wrap;
 .card{
     margin: 1%;
     max-width: 126.6px;
+}
+@media( max-width: 420px){
+    .card{
+        max-width: 150px;
+        margin: 0.5%;;
+    }
+    .personagens{
+        justify-content: space-around;
+    }
 }
