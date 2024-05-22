@@ -13,22 +13,21 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/tema-pagina.css" />
   </head>
-  <body>
     <header>
       <img id="banner" src="imagens/Prancheta 2.4.svg" />
-      <ul class="opcoes">
-        <select class="selection" name="" id="opcoes">
-          <option value="Animes">Animes</option>
-          <option value="News">Notícias</option>
-          <option value="Game">Game</option>
-        </select>
-        <a href="jogo.html"><li class="btn btn-primary">Game</li></a>
-        <li class="tema-pagina">
-          <div class="ball"></div>
-        </li>
-      </ul>
-    </header>
-
+    <ul class="opcoes">
+      <select class="selection" name="" id="opcoes">
+        <option value="Animes">Animes</option>
+        <option value="News">Notícias</option>
+        <option value="Game">Game</option>
+      </select>
+      <a href="jogo.html"><li class="btn btn-primary">Game</li></a>
+      <li class="tema-pagina">
+        <div class="ball"></div>
+      </li>
+    </ul>
+  </header>
+  <body>
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -47,7 +46,7 @@
     </div>
 
     <div class="news-animes">
-      <div class="info" id="news">
+      <div class="info vertical-bar" id="news">
         <h2>Notícias</h2>
         <ul id="news-list">
           <!-- Aqui serão inseridas as notícias -->
@@ -93,32 +92,7 @@
     <script src="js/anime.js"></script>
     <script src="js/tema-pagina.js"></script>
     <script>
-      document.getElementById("opcoes").addEventListener("change", function () {
-        const selectedOption = this.value;
-        console.log(selectedOption);
-
-        const sections = document.querySelectorAll(".info");
-        sections.forEach((section) => {
-          section.style.display = "none";
-        });
-
-        let selectedOptionSection;
-        if (selectedOption === "Animes") {
-          selectedOptionSection = document.getElementById("animes");
-        } else if (selectedOption === "News") {
-          selectedOptionSection = document.getElementById("news");
-        } else if (selectedOption === "Game") {
-          window.location.href = "jogo.html";
-          return; // Para evitar que o código continue executando
-        }
-
-        if (selectedOptionSection) {
-          selectedOptionSection.style.display = "block";
-        }
-      });
-
-      // Exibir a seção "Animes" por padrão
-      document.getElementById("animes").style.display = "block";
+ 
     </script>
   </body>
 </html>

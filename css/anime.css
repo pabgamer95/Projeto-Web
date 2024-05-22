@@ -37,6 +37,7 @@ header img {
 .news-animes {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .opcoes {
