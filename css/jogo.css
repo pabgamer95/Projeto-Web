@@ -27,5 +27,10 @@ body {
     font-size: larger;
     font-weight: 900;
 }
-
-
+@media (max-width: 650px){
+    
+    #board.game-board{
+        height: 50%;
+        width: 50%;
+    }
+}
