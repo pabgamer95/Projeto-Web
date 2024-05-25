@@ -377,7 +377,7 @@ function criarBotaoFavorito(animeId, animeDetails) {
     } else {
       console.error("Detalhes do anime não estão definidos.");
     }
-  };
+  }};
 
   function addToFavorites(animeId, animeName, animeImageUrl) {
     const user = auth.currentUser;
