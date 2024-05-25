@@ -372,85 +372,87 @@ function criarBotaoFavorito(animeId, animeDetails) {
   const button = document.createElement("button");
   button.textContent = "Adicionar aos Favoritos";
   button.onclick = () => {
-    addToFavorites(animeDetails.mal_id, animeDetails.title, animeDetails.images.jpg.image_url);
+    if (animeDetails) {
+      addToFavorites(animeDetails.mal_id, animeDetails.title, animeDetails.images.jpg.image_url);
+    } else {
+      console.error("Detalhes do anime não estão definidos.");
+    }
   };
-  criarBotaoElement.appendChild(button);
-  return criarBotaoElement;
-}
-function addToFavorites(animeId, animeName, animeImageUrl) {
-  const user = auth.currentUser;
-  if (user) {
-    const userId = user.uid;
-    const favoriteAnime = {
-      id: animeId,
-      name: animeName,
-      imageUrl: animeImageUrl
-    };
 
-    db.collection('users').doc(userId).collection('favorites').doc(animeId).set(favoriteAnime)
-      .then(() => {
-        alert('Anime adicionado aos favoritos!');
-        // Aqui você pode adicionar lógica para atualizar a interface do usuário, se necessário
-      })
-      .catch(error => {
-        console.error('Erro ao adicionar anime aos favoritos: ', error);
-      });
-  } else {
-    console.log('Usuário não está autenticado.');
-    // Aqui você pode adicionar lógica para lidar com o usuário não autenticado, se necessário
+  function addToFavorites(animeId, animeName, animeImageUrl) {
+    const user = auth.currentUser;
+    if (user) {
+      const userId = user.uid;
+      const favoriteAnime = {
+        id: animeId,
+        name: animeName,
+        imageUrl: animeImageUrl
+      };
+
+      db.collection('users').doc(userId).collection('favorites').doc(animeId).set(favoriteAnime)
+        .then(() => {
+          alert('Anime adicionado aos favoritos!');
+          // Aqui você pode adicionar lógica para atualizar a interface do usuário, se necessário
+        })
+        .catch(error => {
+          console.error('Erro ao adicionar anime aos favoritos: ', error);
+        });
+    } else {
+      console.log('Usuário não está autenticado.');
+      // Aqui você pode adicionar lógica para lidar com o usuário não autenticado, se necessário
+    }
   }
-}
 
 
-function criarBotaoCarregarMais(onClick) {
-  const loadMoreButton = document.createElement("button");
-  loadMoreButton.textContent = "Carregar Mais";
-  loadMoreButton.classList.add("btn", "btn-primary");
-  loadMoreButton.addEventListener("click", onClick);
-  return loadMoreButton;
-}
+  function criarBotaoCarregarMais(onClick) {
+    const loadMoreButton = document.createElement("button");
+    loadMoreButton.textContent = "Carregar Mais";
+    loadMoreButton.classList.add("btn", "btn-primary");
+    loadMoreButton.addEventListener("click", onClick);
+    return loadMoreButton;
+  }
 
 
 
 
-// Função para alternar a exibição entre as seções
-function toggleSection(section) {
-  const sections = [
-    "sinopse-container",
-    "episodes-container",
-    "personagens-container",
-    "status-container",
-    "reviews-container",
-    "recomendacoes-container",
-  ];
+  // Função para alternar a exibição entre as seções
+  function toggleSection(section) {
+    const sections = [
+      "sinopse-container",
+      "episodes-container",
+      "personagens-container",
+      "status-container",
+      "reviews-container",
+      "recomendacoes-container",
+    ];
 
-  sections.forEach((id) => {
-    document.getElementById(id).style.display = "none";
+    sections.forEach((id) => {
+      document.getElementById(id).style.display = "none";
+    });
+
+    const sectionId = `${section}-container`;
+    const personagemId = `personagens-container`;
+
+    if (sectionId != personagemId) {
+      document.getElementById(sectionId).style.display = "block";
+    } else {
+      document.getElementById(personagemId).style.display = "flex";
+    }
+  }
+
+  // Função para extrair o animeId da URL
+  function getAnimeIdFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+  }
+
+  // Inicializa a página com a sinopse visível
+  document.addEventListener("DOMContentLoaded", () => {
+    const animeId = getAnimeIdFromURL(); // Obtém o ID do anime da URL
+    if (animeId) {
+      mostrarDetalhesAnime(animeId);
+      toggleSection("sinopse"); // Mostrar a sinopse por padrão
+    } else {
+      console.error("Anime ID não encontrado na URL");
+    }
   });
-
-  const sectionId = `${section}-container`;
-  const personagemId = `personagens-container`;
-
-  if (sectionId != personagemId) {
-    document.getElementById(sectionId).style.display = "block";
-  } else {
-    document.getElementById(personagemId).style.display = "flex";
-  }
-}
-
-// Função para extrair o animeId da URL
-function getAnimeIdFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("id");
-}
-
-// Inicializa a página com a sinopse visível
-document.addEventListener("DOMContentLoaded", () => {
-  const animeId = getAnimeIdFromURL(); // Obtém o ID do anime da URL
-  if (animeId) {
-    mostrarDetalhesAnime(animeId);
-    toggleSection("sinopse"); // Mostrar a sinopse por padrão
-  } else {
-    console.error("Anime ID não encontrado na URL");
-  }
-});
