@@ -1,3 +1,4 @@
+const auth = firebase.auth();
 // Função para buscar os detalhes do anime com base no animeId, incluindo a lista de episódios
 async function fetchAnimeInfo(animeId) {
   return new Promise((resolve, reject) => {
@@ -137,7 +138,7 @@ async function traduzirSinopse(synopsis) {
 // Função para exibir os detalhes do anime na página
 async function mostrarDetalhesAnime(animeId) {
   try {
-    // Busca os detalhes do anime
+    const user = auth.currentUser;
     let animeDetails = await fetchAnimeInfo(animeId);
 
     // Exibe os detalhes básicos do anime
@@ -152,6 +153,14 @@ async function mostrarDetalhesAnime(animeId) {
       animeDetails.aired.string;
     document.getElementById("anime-rating").textContent = animeDetails.rating;
     document.getElementById("anime-url").href = animeDetails.url;
+
+    // Cria e adiciona o botão de favoritos
+    // Cria e adiciona o botão de favoritos
+    const addToFavoritesBtn = criarBotaoFavorito(animeDetails);
+    const animeCard = document.getElementById("anime-card");
+    animeCard.appendChild(addToFavoritesBtn);
+
+
 
     // Busca os episódios do anime
     let episodes = await fetchEpisodes(animeId);
@@ -168,10 +177,13 @@ async function mostrarDetalhesAnime(animeId) {
     // Busca as recomendações do anime
     let recomendacoes = await fetchRecomendacoes(animeId);
     exibirRecomendacoes(recomendacoes);
+
   } catch (error) {
     console.error("Erro ao exibir detalhes do anime:", error);
   }
 }
+
+
 
 // Limite inicial de itens exibidos
 const ITEMS_LIMIT = 5;
@@ -253,8 +265,8 @@ function criarElementoPersonagem(personagem) {
 
   let imageSrc =
     personagem.character.images &&
-    personagem.character.images.jpg &&
-    personagem.character.images.jpg.image_url
+      personagem.character.images.jpg &&
+      personagem.character.images.jpg.image_url
       ? personagem.character.images.jpg.image_url
       : "https://via.placeholder.com/65x60";
   image.src = imageSrc;
@@ -354,6 +366,41 @@ function criarElementoRecomendacao(recomendacao) {
   recomendacaoElement.innerHTML = `<div class="recomendacao-titulo">${recomendacao.entry.title}</div>`;
   return recomendacaoElement;
 }
+function criarBotaoFavorito(animeId, animeDetails) {
+  const criarBotaoElement = document.createElement("div");
+  criarBotaoElement.classList.add("BotaoFavorito");
+  const button = document.createElement("button");
+  button.textContent = "Adicionar aos Favoritos";
+  button.onclick = () => {
+    addToFavorites(animeDetails.mal_id, animeDetails.title, animeDetails.images.jpg.image_url);
+  };
+  criarBotaoElement.appendChild(button);
+  return criarBotaoElement;
+}
+function addToFavorites(animeId, animeName, animeImageUrl) {
+  const user = auth.currentUser;
+  if (user) {
+    const userId = user.uid;
+    const favoriteAnime = {
+      id: animeId,
+      name: animeName,
+      imageUrl: animeImageUrl
+    };
+
+    db.collection('users').doc(userId).collection('favorites').doc(animeId).set(favoriteAnime)
+      .then(() => {
+        alert('Anime adicionado aos favoritos!');
+        // Aqui você pode adicionar lógica para atualizar a interface do usuário, se necessário
+      })
+      .catch(error => {
+        console.error('Erro ao adicionar anime aos favoritos: ', error);
+      });
+  } else {
+    console.log('Usuário não está autenticado.');
+    // Aqui você pode adicionar lógica para lidar com o usuário não autenticado, se necessário
+  }
+}
+
 
 function criarBotaoCarregarMais(onClick) {
   const loadMoreButton = document.createElement("button");
@@ -362,6 +409,9 @@ function criarBotaoCarregarMais(onClick) {
   loadMoreButton.addEventListener("click", onClick);
   return loadMoreButton;
 }
+
+
+
 
 // Função para alternar a exibição entre as seções
 function toggleSection(section) {

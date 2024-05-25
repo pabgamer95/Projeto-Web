@@ -12,15 +12,19 @@
     <link rel="stylesheet" href="../css/detalhes_anime.css">
     <link rel="stylesheet" href="../css/tema-pagina.css">
     <!-- Script personalizado -->
-    <script src="../js/detalhes_anime.js" defer></script>
+
 </head>
 
 <body>
     <header>
         <img id="banner" src="../imagens/Prancheta 1.4.svg">
         <ul class="opcoes">
-            <a href="../anime.html"><li class="btn btn-primary">Home</li></a>
-            <a href="../jogo.html"><li class="btn btn-primary">Game</li></a>
+            <a href="../anime.html">
+                <li class="btn btn-primary">Home</li>
+            </a>
+            <a href="../jogo.html">
+                <li class="btn btn-primary">Game</li>
+            </a>
             <li class="tema-pagina">
                 <div class="ball">
                 </div>
@@ -43,6 +47,10 @@
                                 <button class="option" onclick="toggleSection('personagens')">Personagens</button>
                                 <button class="option" onclick="toggleSection('reviews')">Reviews</button>
                                 <button class="option" onclick="toggleSection('recomendacoes')">Recomendações</button>
+                                <button class="option" id="anime-card"></button>
+
+
+
                             </div>
                             <hr class="divider">
                             <div id="sinopse-container">
@@ -82,6 +90,13 @@
             </div>
         </div>
     </div>
-<script src="../js/tema-pagina-detalhes.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/detalhes_anime.js"></script>
+    <script src="../js/tema-pagina-detalhes.js"></script>
 </body>
+
 </html>

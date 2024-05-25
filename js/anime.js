@@ -223,33 +223,33 @@ async function fetchAndDisplayAnimeNews(limit) {
 }
 //seleção só para mobile
 const mediaQuery = window.matchMedia('(max-width: 420px)');
-if(mediaQuery.matches){
+if (mediaQuery.matches) {
 
-document.getElementById("opcoes").addEventListener("change", function () {
-  const selectedOption = this.value;
-  console.log(selectedOption);
+  document.getElementById("opcoes").addEventListener("change", function () {
+    const selectedOption = this.value;
+    console.log(selectedOption);
 
-  const sections = document.querySelectorAll(".info");
-  sections.forEach((section) => {
-    section.style.display = "none";
+    const sections = document.querySelectorAll(".info");
+    sections.forEach((section) => {
+      section.style.display = "none";
+    });
+
+    let selectedOptionSection;
+    if (selectedOption === "Animes") {
+      selectedOptionSection = document.getElementById("animes");
+    } else if (selectedOption === "News") {
+      selectedOptionSection = document.getElementById("news");
+    } else if (selectedOption === "Game") {
+      window.location.href = "jogo.html";
+      return; // Para evitar que o código continue executando
+    }
+
+    if (selectedOptionSection) {
+      selectedOptionSection.style.display = "block";
+    }
   });
-
-  let selectedOptionSection;
-  if (selectedOption === "Animes") {
-    selectedOptionSection = document.getElementById("animes");
-  } else if (selectedOption === "News") {
-    selectedOptionSection = document.getElementById("news");
-  } else if (selectedOption === "Game") {
-    window.location.href = "jogo.html";
-    return; // Para evitar que o código continue executando
-  }
-
-  if (selectedOptionSection) {
-    selectedOptionSection.style.display = "block";
-  }
-});
-// Exibir a seção "Animes" por padrão
-document.getElementById("animes").style.display = "block";
+  // Exibir a seção "Animes" por padrão
+  document.getElementById("animes").style.display = "block";
 };
 
 // Chamando a função fetchAndDisplayAnimeNews com limite de 5 notícias
